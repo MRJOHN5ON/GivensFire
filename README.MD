@@ -1,0 +1,22 @@
+# Givens Fire and Forestry Website
+
+
+**This repository is a work in progress as I continue to enhance my JavaScript skills and explore automated testing with Playwright.** 
+
+
+Hey there! 👋
+
+For some extra side money, I spent the last month designing and configuring a six-page Squarespace website for Givens Fire and Forestry.
+
+*You can check out the website I created [here](https://www.givensfireandforestry.com/).*
+
+ The client wasn't super into the tech side, so I took what we discussed in virtual meetings, along with his business plan, and turned it into a fully functional site with a few special touches:
+
+- **Custom CSS**: I added some unique styles to give the site a distinct look.
+- **Google Tag Manager**: Injected code for tracking and analytics to keep tabs on site performance.
+- **Logo and Graphics**: Designed a logo and a few graphic elements using Canva and Ideogram AI.
+
+
+
+
+
