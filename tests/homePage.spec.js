@@ -7,6 +7,7 @@ const urls = [
     {name: 'services', expectedUrl: 'https://www.givensfireandforestry.com/services'},
     {name: 'resources', expectedUrl: 'https://www.givensfireandforestry.com/resources'},
     {name: 'contacts', expectedUrl:  'https://www.givensfireandforestry.com/contact'},
+    {name: 'getQuote', expectedUrl: 'https://www.givensfireandforestry.com/appointments'}
 ];
 
 const links = {
@@ -14,7 +15,8 @@ const links = {
     gallery: '/gallery',
     services: '/services',
     resources: '/resources',
-    contacts: '/contact'
+    contacts: '/contact',
+    getQuote: '/appointments'
 };
 
 test('Nav bar links', async ({ page }) => {
@@ -59,6 +61,24 @@ test('Nav bar facebook link opens in a new page', async ({ page, context }) => {
 
     
 })
+
+test('learn more buttons within carousel lead to correct page while opening in a new tab', async ({ page, context }) => {
+    const homepage = new homePage(page);
+    await homepage.gotoHomePage();
+    const learnMoreBtns = page.getByRole('link', { name: 'Learn more!' });
+    const count = await learnMoreBtns.count();
+    
+    for (let i = 0; i < count; i++) {
+        const [newPage] = await Promise.all([
+            context.waitForEvent('page'),
+            learnMoreBtns.nth(i).click()
+        ]);
+        await expect(newPage).toHaveURL('https://www.givensfireandforestry.com/services');
+        await newPage.close();
+    }
+})
+
+
 
 
 

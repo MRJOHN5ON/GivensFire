@@ -36,6 +36,13 @@ exports.homePage = class homePage {
         return this.page.getByLabel('Facebook').first()
     }
 
+    get getQuoteLink() {
+        return this.page.getByRole('link', {name: 'Get a Quote!'})
+    }
+
+   
+
+
 
 
 }
