@@ -9,6 +9,7 @@ exports.HomePage = class HomePage {
 
     static facebookLabel = 'Facebook';
     static instagramLabel = 'Instagram';
+    static learnMoreLinks = 'Learn more!';
 
 
     // Nav bar Selectors

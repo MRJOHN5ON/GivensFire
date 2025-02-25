@@ -53,10 +53,9 @@ test('Nav bar facebook link opens in a new page', async ({ page, context }) => {
 test('learn more buttons within carousel lead to correct page while opening in a new tab', async ({ page, context }) => {
     const homepage = new HomePage(page);
     await homepage.gotoHomePage();
-    const learnMoreBtns = page.getByRole('link', { name: 'Learn more!' });
-    const count = await learnMoreBtns.count();
-    
-    for (let i = 0; i < count; i++) {
+    const learnMoreBtns = page.getByRole('link', { name: HomePage.learnMoreLinks });
+
+    for (let i = 0; i < 4; i++) {
         const [newPage] = await Promise.all([
             context.waitForEvent('page'),
             learnMoreBtns.nth(i).click()
@@ -64,7 +63,7 @@ test('learn more buttons within carousel lead to correct page while opening in a
         await expect(newPage).toHaveURL('https://www.givensfireandforestry.com/services');
         await newPage.close();
     }
-})
+});
 
 
 
