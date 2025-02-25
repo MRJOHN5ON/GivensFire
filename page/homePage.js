@@ -1,11 +1,15 @@
-exports.homePage = class homePage {
+exports.HomePage = class HomePage {
     constructor(page) {
         this.page = page;
     }
-    //Methods
+    
     async gotoHomePage() {
         await this.page.goto('https://www.givensfireandforestry.com/');
     }
+
+    static facebookLabel = 'Facebook';
+    static instagramLabel = 'Instagram';
+
 
     // Nav bar Selectors
     get aboutLink() {
@@ -28,21 +32,7 @@ exports.homePage = class homePage {
         return this.page.getByRole('link', {name: 'Contact'})
     }
 
-    get instagramLink() {
-        return this.page.getByLabel('Instagram').first()
-    }
-
-    get facebookLink() {
-        return this.page.getByLabel('Facebook').first()
-    }
-
     get getQuoteLink() {
         return this.page.getByRole('link', {name: 'Get a Quote!'})
     }
-
-   
-
-
-
-
 }
