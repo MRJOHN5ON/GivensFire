@@ -65,6 +65,13 @@ test('learn more buttons within carousel lead to correct page while opening in a
     }
 });
 
+test('Book consultation button leads to appointments page', async ({ page }) => {
+    const homepage = new HomePage(page);
+    await homepage.gotoHomePage();
+    await page.getByRole('link', { name: HomePage.bookConsultationLink }).click();
+    await expect(page).toHaveURL('https://www.givensfireandforestry.com/appointments');
+});
+
 
 
 
