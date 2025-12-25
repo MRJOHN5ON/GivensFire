@@ -110,7 +110,7 @@ test.describe('About Page Tests', () => {
         });
      
     });
-//deprecated 
+//deprecated stuff
     //test.describe('Promotional Content', () => {
        // test('should have working nomination program banner', async ({ page }) => {
             // await expect(aboutPage.nominationBanner).toBeVisible();
