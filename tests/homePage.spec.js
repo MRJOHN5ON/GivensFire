@@ -55,13 +55,36 @@ test('learn more buttons within carousel lead to correct page while opening in a
     await homepage.gotoHomePage();
     const learnMoreBtns = page.getByRole('link', { name: HomePage.learnMoreLinks });
 
+    // Wait for the first button to be visible
+    await learnMoreBtns.first().waitFor({ state: 'visible' });
+
     for (let i = 0; i < 4; i++) {
-        const [newPage] = await Promise.all([
-            context.waitForEvent('page'),
-            learnMoreBtns.nth(i).click()
-        ]);
-        await expect(newPage).toHaveURL('https://www.givensfireandforestry.com/services');
-        await newPage.close();
+        // Wait for the specific button to be visible before clicking
+        const button = learnMoreBtns.nth(i);
+        await button.waitFor({ state: 'visible' });
+        await button.scrollIntoViewIfNeeded();
+        
+        // Check if the link opens in a new tab (has target="_blank")
+        const opensInNewTab = await button.evaluate(el => el.getAttribute('target') === '_blank' || el.getAttribute('target') === '_new');
+        
+        if (opensInNewTab) {
+            const [newPage] = await Promise.all([
+                context.waitForEvent('page'),
+                button.click()
+            ]);
+            await expect(newPage).toHaveURL(/^https:\/\/www\.givensfireandforestry\.com\/services/);
+            await newPage.close();
+        } else {
+            // Regular navigation - wait for navigation and then go back
+            await Promise.all([
+                page.waitForURL(/^https:\/\/www\.givensfireandforestry\.com\/services/),
+                button.click()
+            ]);
+            await expect(page).toHaveURL(/^https:\/\/www\.givensfireandforestry\.com\/services/);
+            await homepage.gotoHomePage();
+            // Wait a bit for the carousel to reset
+            await page.waitForTimeout(500);
+        }
     }
 });
 

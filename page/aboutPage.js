@@ -29,7 +29,7 @@ exports.AboutPage = class AboutPage {
         this.sustainabilitySection = page.getByText(/our commitment to sustainability is unwavering/i);
         
         // Value proposition elements
-        this.whyChooseUsSection = page.locator('list').filter({ hasText: /Experienced Leadership|Fire-Smart Solutions/ });
+        this.whyChooseUsSection = page.locator('p:has-text("WHY CHOSE US?")');
         this.valuePropositions = {
             leadership: page.getByRole('heading', { name: 'Experienced Leadership' }),
             solutions: page.getByRole('heading', { name: 'Fire-Smart Solutions' }),

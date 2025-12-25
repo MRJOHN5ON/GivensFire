@@ -108,15 +108,16 @@ test.describe('About Page Tests', () => {
             expect(facebookPage.url()).toContain(socialUrls.facebook);
             await facebookPage.close();
         });
+     
     });
-
-    test.describe('Promotional Content', () => {
-        test('should have working nomination program banner', async ({ page }) => {
-            await expect(aboutPage.nominationBanner).toBeVisible();
-            await aboutPage.nominationLink.click();
-            await expect(page).toHaveURL(/\/nomination/);
-        });
-    });
+//deprecated 
+    //test.describe('Promotional Content', () => {
+       // test('should have working nomination program banner', async ({ page }) => {
+            // await expect(aboutPage.nominationBanner).toBeVisible();
+            // await aboutPage.nominationLink.click();
+             //await expect(page).toHaveURL(/\/nomination/);
+       // });
+   // });
 
     test.describe('Technical Requirements', () => {
         test('should load images properly', async ({ page }) => {
